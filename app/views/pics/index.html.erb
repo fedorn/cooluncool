@@ -1,0 +1,9 @@
+<h1>cooluncool</h1>
+<% @pics.each do |pic| %>
+  <%= image_tag pic.image.url(:thumb) %>
+  <br />
+  <%= pic.rating %>
+  <hr />
+<% end %>
+
+<%= link_to 'Upload pic', new_pic_path %>
