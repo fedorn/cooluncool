@@ -1,9 +1,13 @@
-<h1>cooluncool</h1>
-<% @pics.each do |pic| %>
-  <%= image_tag pic.image.url(:thumb) %>
-  <br />
-  <%= pic.rating %>
-  <hr />
+<center>
+<% if @new_pic %>
+  <%= link_to image_tag(@new_pic.image.url(:medium)), @new_pic.image.url %>
+  <%= @new_pic.rating %>
 <% end %>
-
-<%= link_to 'Upload pic', new_pic_path %>
+<br />
+<%= link_to 'Cool', cool_pics_url %> | <%= link_to 'Uncool' , new_pic_path %>
+<h1>Coolest pics</h1>
+<% @top_pics.each do |pic| %>
+  <%= link_to image_tag(pic.image.url(:thumb)), pic.image.url %>
+  <%= pic.rating %>
+<% end %>
+</center>

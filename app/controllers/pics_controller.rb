@@ -1,6 +1,7 @@
 class PicsController < ApplicationController
   def index
-    @pics = Pic.all
+    @new_pic = Pic.last
+    @top_pics = Pic.order("rating DESC").take(5)
   end
 
   def new
@@ -14,5 +15,12 @@ class PicsController < ApplicationController
     else
       render :action => "new"
     end
+  end
+
+  def cool
+    new_pic = Pic.last
+    new_pic.rating += 1
+    new_pic.save
+    redirect_to :action => "index"
   end
 end

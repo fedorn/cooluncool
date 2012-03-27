@@ -1,8 +1,6 @@
+<h1>So what's cool?</h1>
 <%= form_for @pic, :url => pics_path, :html => { :method => :post, :multipart => true } do |form| %>
   <%= form.file_field :image %>
-  <br />
-  <%= form.label :rating %>
-  <%= form.text_field :rating %>
   <br />
   <%= form.submit %>
 <% end %>

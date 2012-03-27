@@ -57,6 +57,9 @@ Cooluncool::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   root :to => 'pics#index'
-  resources :pics
-
+  resources :pics do
+    collection do
+      get 'cool'
+    end
+  end
 end
