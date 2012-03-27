@@ -56,8 +56,8 @@ Cooluncool::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  root :to => 'pics#index'
-  resources :pics do
+  root :to => 'images#index'
+  resources :images do
     collection do
       get 'cool'
     end
