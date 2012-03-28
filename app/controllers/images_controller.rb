@@ -2,19 +2,13 @@ class ImagesController < ApplicationController
   def index
     @new_image = Image.last
     @top_images = Image.order("rating DESC").take(5)
-  end
-
-  def new
     @image = Image.new
   end
 
   def create
     @image = Image.create(params[:image])
-    if @image.save
-      redirect_to :action => "index"
-    else
-      render :action => "new"
-    end
+    @image.save
+    redirect_to :action => "index"
   end
 
   def cool

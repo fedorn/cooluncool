@@ -18,6 +18,8 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
@@ -37,4 +39,4 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem "paperclip", "~> 2.7"
+gem "paperclip", "~> 3.0"

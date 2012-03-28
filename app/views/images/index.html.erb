@@ -1,19 +1,48 @@
-<center>
-<% if @new_image %>
-  <%= link_to image_tag(@new_image.image.url(:medium)), @new_image.image.url %>
-  <%= @new_image.rating %>
-<% end %>
-<br />
-<% unless cookies[@new_image.id] %>
-  <%= link_to 'Cool', cool_images_url %>
-<% else %>
-  Cool
-<% end %>
-|
-<%= link_to 'Uncool' , new_image_path %>
-<h1>Coolest images</h1>
-<% @top_images.each do |image| %>
-  <%= link_to image_tag(image.image.url(:thumb)), image.image.url %>
-  <%= image.rating %>
-<% end %>
-</center>
+<div class="container">
+  <% if @new_image %>
+    <%= link_to image_tag(@new_image.image.url(:medium)), @new_image.image.url %>
+    <p><span class="badge badge-success"><%= @new_image.rating %></span><p>
+  <% end %>
+  <p>
+    <% unless cookies[@new_image.id] %>
+      <%= link_to 'Cool', cool_images_url, :class => "btn btn-large btn-success" %>
+    <% else %>
+      <button class="btn btn-large btn-success disabled" type="button">Cool</button>
+    <% end %>
+    <a class="btn btn-large btn-danger" data-toggle="modal" href="#uncool">Uncool</a>
+  </p>
+  <div class="row">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_button_tweet"></a>
+<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f7380f641608d8f"></script>
+<!-- AddThis Button END -->
+  </div>
+  <h2>Coolest images</h2>
+  <ul id="top-images" class="unstyled">
+  <% @top_images.each do |image| %>
+    <li>
+      <%= link_to image_tag(image.image.url(:thumb)), image.image.url %>
+      <p><span class="badge badge-success"><%= image.rating %></span></p>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<div class="modal hide fade" id="uncool">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h1>So, what's cool?</h1>
+  </div>
+  <div class="modal-body">
+    <%= form_for @image, :url => images_path, :html => { :method => :post, :multipart => true } do |form| %>
+      <%= form.file_field :image %>
+  </div>
+  <div class="modal-footer">
+      <%= form.submit "Upload image" %>
+    <% end %>
+  </div>
+</div>
