@@ -4,7 +4,7 @@
     <p><span class="badge badge-success"><%= @new_image.rating %></span><p>
   <% end %>
   <p>
-    <% unless cookies[@new_image.id] %>
+    <% unless @new_image and cookies[@new_image.id] %>
       <%= link_to 'Cool', cool_images_url, :class => "btn btn-large btn-success" %>
     <% else %>
       <button class="btn btn-large btn-success disabled" type="button">Cool</button>
