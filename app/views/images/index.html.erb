@@ -4,7 +4,13 @@
   <%= @new_image.rating %>
 <% end %>
 <br />
-<%= link_to 'Cool', cool_images_url %> | <%= link_to 'Uncool' , new_image_path %>
+<% unless cookies[@new_image.id] %>
+  <%= link_to 'Cool', cool_images_url %>
+<% else %>
+  Cool
+<% end %>
+|
+<%= link_to 'Uncool' , new_image_path %>
 <h1>Coolest images</h1>
 <% @top_images.each do |image| %>
   <%= link_to image_tag(image.image.url(:thumb)), image.image.url %>

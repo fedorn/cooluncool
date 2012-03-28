@@ -21,6 +21,7 @@ class ImagesController < ApplicationController
     new_image = Image.last
     new_image.rating += 1
     new_image.save
+    cookies.permanent[new_image.id] = true
     redirect_to :action => "index"
   end
 end
